@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compliant
+  namespace: my-namespace
+spec:
+  replicas: 1
+  minReadySeconds: 15
+  selector:
+    matchLabels:
+      app: compliant
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      namespace: my-namespace
+      labels:
+        app: compliant
+    spec:
+      serviceAccountName: my-service-account
+      containers:
+      - image: nginx:latest
+        name: nginx 
+        securityContext:
+          runAsNonRoot: true
+          readOnlyRootFilesystem: true
+          privileged: true
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "1" 
+          limits:
+            memory: "4Gi"
+            cpu: "2" 
