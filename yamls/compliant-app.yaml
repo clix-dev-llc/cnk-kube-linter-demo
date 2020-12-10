@@ -23,8 +23,7 @@ spec:
         name: nginx 
         securityContext:
           runAsNonRoot: true
-          readOnlyRootFilesystem: true
-          privileged: true
+          privileged: false
         resources:
           requests:
             memory: "1Gi"
