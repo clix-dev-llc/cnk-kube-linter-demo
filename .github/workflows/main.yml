@@ -37,4 +37,4 @@ jobs:
       - name: Run kube-linter lint on the repo
         run: |
           cd "${GITHUB_WORKSPACE}"
-          ./kube-linter lint .
+          ./kube-linter lint yamls/compliant-app.yaml --config yamls/kubelinter-config.yaml

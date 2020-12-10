@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: compliant
   namespace: my-namespace
+  annotations:
+    ignore-check.kube-linter.io/required-annotation-email: Michael Foster does what he wants today.
+    ignore-check.kube-linter.io/required-label-owner: Michael Foster does what he wants today.
 spec:
   replicas: 1
   minReadySeconds: 15
@@ -24,6 +27,7 @@ spec:
         securityContext:
           runAsNonRoot: true
           privileged: false
+          readOnlyRootFilesystem: true
         resources:
           requests:
             memory: "1Gi"
